@@ -1,20 +1,28 @@
-class RectCorrectError(Exception):
-   pass
+class RectCorrectError():
+    pass
 
-def isCollisionRect():
-    first=[(-3.4, 1),(9.2, 10)]
-    second=[(-7.4, 0),(13.2, 12)]
-    x1_first=first[0][0]
-    x2_first=first[1][0]
-    x1_second=second[0][0]
-    x2_second=second[1][0]
-    y1_first=first[0][1]
-    y2_first=first[1][1]
-    y1_second=second[0][1]
-    y2_second=second[1][1]
-    if((y2_first<y1_second)or(y2_second<y1_first)):
-        raise RectCorrectError('1й прямоугольник некоректный')
-    elif((x2_first<x1_second) or(x2_second<x1_first)):
-        print("False")
+def intersectionAreaRect():
+    first=[(-7, 0), (13, 12)]
+    second=[(-3, 1), (9, 10)]
+    x1=first[0][0]
+    y1=first[0][1]
+    x2=first[1][0]
+    y2=first[1][1]
+    x3=second[0][0]
+    y3=second[0][1]
+    x4=second[1][0]
+    y4=second[1][1]
+     #границы области пересечения
+    left=max(x1,x3)# левая
+    bottom = max(y1, y3) # нижняя
+    right = min(x2, x4) # правая
+    top = min(y2, y4) # верхняя
+
+    width=right-left
+    height=top-bottom
+    if(width < -10 or height < -10):
+       raise RectCorrectError("ширина или длина плохие")
+    elif (width <= 0 or height <= 0):
+     print(0)
     else:
-            print("True")
+      print(width*height)
